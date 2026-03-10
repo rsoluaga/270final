@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specialization Dossier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+    <style>
+      /* GLOBAL STYLES */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { height: 100%; font-family: Arial, sans-serif; scroll-behavior: smooth; background-color: #fdfaf1; margin: 0; padding: 0; width 100%; overflow-x: hidden;}
+
+      /* NAVIGATION */
+      .navbar { display: flex; padding: 20px 40px; background: #3e4c33; gap: 20px; position: fixed; top: 0; width: 100%; z-index: 1000; }
+      .dropbtn { background-color: transparent; color: white; padding: 10px 0px; border: none; font-weight: bold; cursor: pointer; font-size: 18px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+      .dropbtn:hover { color: #a3c1ad; }
+
+      /* DROPDOWNS */
+      .dropdown { position: relative; display: inline-block; }
+      .dropdown-content { visibility: hidden; opacity: 0; position: absolute; background-color: #E7ECD4; min-width: 220px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1); border-radius: 12px; padding-top: 15px; margin-top: 0px; z-index: 1; transition: opacity 0.3s ease; }
+      .dropdown:hover .dropdown-content { visibility: visible; opacity: 1; }
+      .dropdown-content a { color: #333; padding: 12px 20px; text-decoration: none; display: block; font-size: 14px; cursor: pointer; border-bottom: 1px solid #d4dcb8; }
+      .dropdown-content a:hover { background-color: #dce3c5; }
+
+      /* HOME VIEW */
+      #home-view { height: 100vh; background: url('homescreen.jpg') no-repeat center center fixed; background-size: cover; display: flex; align-items: center; justify-content: flex-end; }
+      .hero-title-box { text-align: right; margin-right: 50px; }
+      .hero-title-box h1 { font-family: 'Playfair Display', serif; font-size: 80px; color: white; font-style: italic; font-weight: 700; line-height: 0.9; }
+      .hero-title-box h3 { font-family: Arial, sans-serif; font-size: 18px; color: white; font-weight: normal; margin-top: 15px; letter-spacing: 2px; text-transform: uppercase; }
+
+      /* CONTENT VIEW */
+      #content-view { display: none; padding-top: 80px; }
+      .page-banner { width: 100%; height: 90vh; background-size: cover; background-position: center; background-repeat: no-repeat; margin: 0;}
+      .container { max-width: 800px; margin: 60px auto; padding: 20px; }
+      .text-block {width: 100%; background-color: #E7ECD4; padding: 60px; box-sizing: border-box; margin: 0 auto; font-size: 24px; line-height: 1.6; color: #333; max-width: 1000px; }
+      .sub-banner{width:100%; background-color: #F4EFE5; display: flex; flex-direction: column; justify-content: center;align-items: center;text-align: center; padding-left: 40px;}
+      .sub-banner h2{font-family: 'Libre Bakerville', serif; font-weight: 700; font-size: 48px; margin-bottom: 20px; margin-top: 20px; color: #333;}
+      .sub-banner p {font-size: 24px; line-height: 1.6; margin-bottom: 20px; max-width: 800px; color: #555;}
+      .dark-banner {width: 100%; background-color: #0F1515; display: flex; flex-direction: column; justify-content: center;align-items: center;text-align: center;padding: 80px 40px; color: #f4EFE5}
+      .dark-banner h2{font-family: 'Libre Bakerville', serif; font-weight: 700; font-size: 48px; margin-bottom: 25px;}
+      .dark-banner p {text-align: left; font-size: 24px; font-style: italic; line-height: 1.6; max-width: 800px;  margin-bottom: 50px}
+      .text-block a{color: inherit; text-decoration: underline; font-weight: bold;}
+}
+  </style>
+  <script>
+  function showHome() {
+      document.getElementById('home-view').style.display = 'flex';
+      document.getElementById('content-view').style.display = 'none';
+      window.scrollTo(0,0);
+  }
+
+  function showContent(title, imagePath) {
+      document.getElementById('home-view').style.display = 'none';
+      document.getElementById('content-view').style.display = 'block';
+      // We removed the line that updates 'dynamic-title' because you didn't want the text
+      document.getElementById('dynamic-banner').style.backgroundImage = "url('" + imagePath + "')";
+      window.scrollTo(0,0);
+  }
+</script>
+    <body>
+
+        <nav class="navbar">
+            <button class="dropbtn" onclick="showHome()">Home</button>
+
+            <div class="dropdown">
+                <button class="dropbtn">Outlook ▾</button>
+                <div class="dropdown-content">
+                    <a onclick="showContent('Typical Tasks', 'typicaltaskshomescreen.jpg')">Typical Tasks</a>
+                    <a onclick="showContent('Job-Market Outlook', '2.jpg')">Job-Market Outlook</a>
+                    <a onclick="showHome()">Professional Context</a>
+                    <a onclick="showHome()">Technical Skill Snapshot</a>
+                    <a onclick="showHome()">Training Agenda</a>
+                    <a onclick="showHome()">Labor Trends</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Interview ▾</button>
+                <div class="dropdown-content">
+                    <a onclick="showHome()">Broxton Interview</a>
+                    <a onclick="showHome()">Covell-Murthy Interview</a>
+                    <a onclick="showHome()">Wilkie Interview</a>
+                </div>
+            </div>
+        </nav>
+
+        <section id="home-view">
+            <div class="hero-title-box">
+                <h1>Specialization<br>Dossier</h1>
+                <h3>Emi Marrujo and Rio Soluaga</h3>
+            </div>
+        </section>
+
+        <section id="content-view">
+          <header id="dynamic-banner" class="page-banner"></header>
+
+              <div class="text-block">
+                  <p>
+                         Through a mixture of consulting our interviewee, and referencing job postings, here are the typical tasks and duties for the varying leadership and professional levels associated with a Director of a Research Library & Archives, both in and out of the workstation.
+                  </p>
+              </div>
+              <div class="sub-banner">
+                <h2>Overarching Duties</h2>
+                <p>Optimizing Collections Management<br>Research<br>Metadata<br>Project Management<br>Collection Curation<br>Administrative Tasks<br></p>
+                <h2>Social Duties</h2>
+                <p>Training & Supervising, Leadership<br>Cultivating Relationships with Donors<br>Professional Collaborations<br>Community Engagement
+              </div>
+              <section id="dark-banner" class="dark-banner">
+                <h2>Sample Job Postings</h2>
+                <p><a href="https://careers.archivists.org/jobs/22054958/?utm_source=265396&utm_medium=featuredJobs&utm_campaign=mainLanding&utm_term=" target="_blank" style="color: #F4EFE5; text-decoration: underline;">Director, Chesnew Medican Archives</a>, at John Hopkins University School of Medicine
+                <br><a href="https://jobs-getty.icims.com/jobs/4740/special-collections-archivist-i/job?mode=job&iis=LinkedIn&iisn=LinkedIn&mobile=false&width=710&height=500&bga=true&needsRedirect=false&jan1offset=-480&jun1offset=-420" target="_blank" style="color: #F4EFE5; text-decoration: underline;">Special Collections Archivist</a>, at The Getty
+                <br><a href="https://www.gapinc.com/en-us/jobs/w49/48/archivist?rx_id=d7f42a49-e06f-11f0-905a-057eca44bdfe&rx_job=R204948&rx_medium=post&rx_paid=0&rx_r=none&rx_source=linkedin&rx_ts=20260302T165007Z&src=JB-10340&rx_viewer=2792756016b411f1914837060a74509a2febae78ce5d4497afd7412268287d37" target="_blank" style="color: #F4EFE5; text-decoration: underline;">Archivist</a>, at Gap Inc.
+                <br><a href="https://careers.harvard.edu/job/librarian-for-japanese-studies-in-cambridge-ma-united-states-jid-1123?_atxsrc=linkedin&utm_source=linkedin" target="_blank" style="color: #F4EFE5; text-decoration: underline;">Librarian for Japanese Studies</a>, at Harvard University
+              </p>
+
+      </section>
+
+    </body>
+</html>
