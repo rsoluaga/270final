@@ -7,114 +7,514 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
     <style>
-      /* GLOBAL STYLES */
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { height: 100%; font-family: Arial, sans-serif; scroll-behavior: smooth; background-color: #fdfaf1; margin: 0; padding: 0; width 100%; overflow-x: hidden;}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; overflow-x: hidden; font-family: Arial, sans-serif; background-color: #fdfaf1; }
 
-      /* NAVIGATION */
-      .navbar { display: flex; padding: 20px 40px; background: #3e4c33; gap: 20px; position: fixed; top: 0; width: 100%; z-index: 1000; }
-      .dropbtn { background-color: transparent; color: white; padding: 10px 0px; border: none; font-weight: bold; cursor: pointer; font-size: 18px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
-      .dropbtn:hover { color: #a3c1ad; }
+        .navbar { display: flex; padding: 20px 40px; background: #3e4c33; gap: 20px; position: fixed; top: 0; width: 100%; z-index: 1000; vertical-align: top; border-bottom: none; box-shadow: none;}
+        .dropbtn { background-color: transparent; color: white; border: none; font-weight: bold; cursor: pointer; font-size: 18px; text-transform: uppercase; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content { visibility: hidden; opacity: 0; position: absolute; background-color: #E7ECD4; min-width: 220px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1); border-radius: 12px; padding-top: 15px; z-index: 1; transition: opacity 0.3s ease; }
+        .dropdown:hover .dropdown-content { visibility: visible; opacity: 1; }
+        .dropdown-content a { color: #333; padding: 12px 20px; text-decoration: none; display: block; font-size: 14px; cursor: pointer; border-bottom: 1px solid #d4dcb8; }
+        .column-container {display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 60px; max-width: 900px; margin: 0 auto;}
+        .column-container p{flex: 1 1 40%; min-width: 250px; margin-bottom: 0 !important;}
 
-      /* DROPDOWNS */
-      .dropdown { position: relative; display: inline-block; }
-      .dropdown-content { visibility: hidden; opacity: 0; position: absolute; background-color: #E7ECD4; min-width: 220px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1); border-radius: 12px; padding-top: 15px; margin-top: 0px; z-index: 1; transition: opacity 0.3s ease; }
-      .dropdown:hover .dropdown-content { visibility: visible; opacity: 1; }
-      .dropdown-content a { color: #333; padding: 12px 20px; text-decoration: none; display: block; font-size: 14px; cursor: pointer; border-bottom: 1px solid #d4dcb8; }
-      .dropdown-content a:hover { background-color: #dce3c5; }
+        #home-view { width: 100%; display: flex; flex-direction: column; margin-top: 0;}
+        .hero-title-box { text-align: right; margin-right: 50px; }
+        .hero-title-box h1 { font-family: 'Playfair Display', serif; font-size: 80px; color: white; font-style: italic; font-weight: 700; line-height: 0.9; }
+        .hero-title-box h3 { font-family: Arial, sans-serif; font-size: 18px; color: white; font-weight: normal; margin-top: 15px; letter-spacing: 2px; text-transform: uppercase; }
+        .hero-wrapper {height: 100vh; width: 100%; background: url('homescreen.jpg') no-repeat center center fixed; background-size: cover; display: flex; align-items: center; justify-content: flex-end;}
 
-      /* HOME VIEW */
-      #home-view { height: 100vh; background: url('homescreen.jpg') no-repeat center center fixed; background-size: cover; display: flex; align-items: center; justify-content: flex-end; }
-      .hero-title-box { text-align: right; margin-right: 50px; }
-      .hero-title-box h1 { font-family: 'Playfair Display', serif; font-size: 80px; color: white; font-style: italic; font-weight: 700; line-height: 0.9; }
-      .hero-title-box h3 { font-family: Arial, sans-serif; font-size: 18px; color: white; font-weight: normal; margin-top: 15px; letter-spacing: 2px; text-transform: uppercase; }
+        .page-content { display: none; padding-top: 68px; margin-top: 0;}
+        .page-banner { width: 100%; height: auto; background-size: cover; background-position: center;}
+        .page-banner img {width: 100%; height: auto; display: block;}
+        .green-banner p, .sub-banner p, .dark-banner p{margin-bottom: 0;}
 
-      /* CONTENT VIEW */
-      #content-view { display: none; padding-top: 80px; }
-      .page-banner { width: 100%; height: 90vh; background-size: cover; background-position: center; background-repeat: no-repeat; margin: 0;}
-      .container { max-width: 800px; margin: 60px auto; padding: 20px; }
-      .text-block {width: 100%; background-color: #E7ECD4; padding: 60px; box-sizing: border-box; margin: 0 auto; font-size: 24px; line-height: 1.6; color: #333; max-width: 1000px; }
-      .sub-banner{width:100%; background-color: #F4EFE5; display: flex; flex-direction: column; justify-content: center;align-items: center;text-align: center; padding-left: 40px;}
-      .sub-banner h2{font-family: 'Libre Bakerville', serif; font-weight: 700; font-size: 48px; margin-bottom: 20px; margin-top: 20px; color: #333;}
-      .sub-banner p {font-size: 24px; line-height: 1.6; margin-bottom: 20px; max-width: 800px; color: #555;}
-      .dark-banner {width: 100%; background-color: #0F1515; display: flex; flex-direction: column; justify-content: center;align-items: center;text-align: center;padding: 80px 40px; color: #f4EFE5}
-      .dark-banner h2{font-family: 'Libre Bakerville', serif; font-weight: 700; font-size: 48px; margin-bottom: 25px;}
-      .dark-banner p {text-align: left; font-size: 24px; font-style: italic; line-height: 1.6; max-width: 800px;  margin-bottom: 50px}
-      .text-block a{color: inherit; text-decoration: underline; font-weight: bold;}
+
+        .text-block { width: 100%; background-color: #E7ECD4; display: flex; flex-direction: column; align-items: center; padding: 40px; text-align: center; margin-top:-1px; }
+        .text-block p { color: #555; text-align: left; font-size: 18px; font-style: italic; line-height: 1.6; max-width: 800px; margin: 0 auto 50px auto; }
+        .text-block h2 { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 42px; margin: 20px 0; color: #555; }
+
+        .sub-banner { width: 100%; background-color: #F4EFE5; display: flex; flex-direction: column; align-items: center; padding: 40px; text-align: center; margin-top:-1px; }
+        .sub-block p { color: #555; text-align: left; font-size: 18px; font-style: italic; line-height: 1.6; max-width: 800px; margin: 0 auto 50px auto; }
+        .sub-banner h2 { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 42px; margin: 20px 0; color: #555; }
+
+        .light-banner { width: 100%; background-color: #F4EFE5; display: flex; flex-direction: column; align-items: center; padding: 40px; text-align: center; margin-top:-1px; }
+        .light-banner h2 { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 42px; margin: 20px 0; color: #555; }
+
+        .dark-banner { width: 100%; background-color: #0F1515; padding: 80px 40px; color: #f4EFE5; margin-top:-1px; }
+        .dark-banner h2 { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 42px; margin-bottom: 25px; text-align: center; color:#F4EFE5;}
+        .dark-banner p { text-align: left; font-size: 18px; font-style: italic; line-height: 1.6; max-width: 800px; margin: 0 auto 50px auto; color: #F4EFE5;}
+        .dark-banner a { color: #F4EFE5; text-decoration: underline; font-weight: bold; }
+
+        .orange-banner { width: 100%; background-color: #E6DEDA; padding: 80px 40px; color: #f4EFE5; margin-top:-1px; }
+        .orange-banner h2 { color: #555; font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 42px; margin-bottom: 25px; text-align: center; }
+        .orange-banner p { color: #555; text-align: left; font-size: 18px; font-style: italic; line-height: 1.6; max-width: 800px; margin: 0 auto 50px auto; }
+        .orange-banner a { color: #555; text-decoration: underline; font-weight: bold; }
+
+        .green-banner { width: 100%; background-color: #2D3728; display: flex; flex-direction: column; align-items: center; padding: 40px; text-align: center; margin-top:-1px; }
+        .green-banner h2 { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 42px; margin: 20px 0; color: #F4EFE5 !important; }
+        .green-banner p { font-size: 18px; line-height: 1.6; color: #F4EFE5; margin-bottom: 20px; max-width: 800px; }
+        .green-banner p a { font-size: 18px; line-height: 1.6; color: #F4EFE5 !important; margin-bottom: 20px; max-width: 800px; }
+
+        .bib-entry {padding-left: 40px; text-indent: -40px; margin-bottom: 30px; line-height: 1.6;}
+        .bib-annotation {text-indent: 0; padding-left: 0; margin-top: 10px; display: block; font-style: normal; color: #555;}
+
+        .full-width-img {width:100%; height: auto; display: block;}
+
+        .profresh-banner-container { position: relative; width: 100%; }
+        .profresh-banner-overlay {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 80%; max-width: 800px;}
+        .profresh-banner-overlay h2 {font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 42px; color: #555; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); font-style: italic;}
+        .profresh-banner-overlay p {font-size: 18px; line-height: 1.6; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);}
+
+        .profresh-overlay-box {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);background-color: #F4EFE5; padding: 40px; text-align: center; width: 70%; max-width: 700px; box-shadow: 0px 10px 30px rgba(0,0,0,0.2);}
+        .profresh-overlay-box h2 { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 42px; margin: 20px 0; color: #333; font-style: italic; }
+        .profresh-overlay-box p a {display: inline-block; margin: 10px; font-size: 18px; color: #3e4c33; text-decoration: underline;}
+
+        .floating-card {background-color: #F4EFE5; padding: 50px; margin: 40px auto; max-width: 800px; border-radius: 12px; box-shadow: 0px 15px 35px rgba(0,0,0,0.1); text-align: center;}
+        .floating-card h2 {font-family: 'Libre Baskerville', serif; font-size: 32px; margin-bottom: 20px; color: #333;}
+        .floating-card p {font-size: 18px; line-height: 1.8; color: black;}
+        .floating-row {display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 20px; max-width: 1100px; margin: 0 auto;}
+        .floating-card-half {background-color: #E7ECD4; padding: 40px; flex: 1 1 45%; min-width: 300px; border-radius: 12px; box-shadow: 0px 15px 35px rgba(0,0,0,0.1); text-align: center;}
+        /* The background area behind the cards */
+.text-block, .floating-row-container {
+    background-color: #E7ECD4; !important;
+    padding: 60px 0;}
+    /* Ensure the titles inside the cards are readable */
+.floating-card-half h2 {
+    color: #333;
+    font-family: 'Libre Baskerville', serif;
 }
-  </style>
-  <script>
-  function showHome() {
-      document.getElementById('home-view').style.display = 'flex';
-      document.getElementById('content-view').style.display = 'none';
-      window.scrollTo(0,0);
-  }
 
-  function showContent(title, imagePath) {
-      document.getElementById('home-view').style.display = 'none';
-      document.getElementById('content-view').style.display = 'block';
-      // We removed the line that updates 'dynamic-title' because you didn't want the text
-      document.getElementById('dynamic-banner').style.backgroundImage = "url('" + imagePath + "')";
-      window.scrollTo(0,0);
-  }
-</script>
-    <body>
 
-        <nav class="navbar">
-            <button class="dropbtn" onclick="showHome()">Home</button>
+        a{color: #3e4c33; font-weight: bold; text-decoration: underline;}
+        @keyframes shake-animation {
+         0% { transform: translate(0, 0); }
+         25% { transform: translate(2px, -2px); }
+         50% { transform: translate(-2px, 2px); }
+         75% { transform: translate(2px, 2px); }
+         100% { transform: translate(0, 0); }}
 
-            <div class="dropdown">
-                <button class="dropbtn">Outlook ▾</button>
-                <div class="dropdown-content">
-                    <a onclick="showContent('Typical Tasks', 'typicaltaskshomescreen.jpg')">Typical Tasks</a>
-                    <a onclick="showContent('Job-Market Outlook', '2.jpg')">Job-Market Outlook</a>
-                    <a onclick="showHome()">Professional Context</a>
-                    <a onclick="showHome()">Technical Skill Snapshot</a>
-                    <a onclick="showHome()">Training Agenda</a>
-                    <a onclick="showHome()">Labor Trends</a>
-                </div>
-            </div>
+        a:hover {display: inline-block; animation: 0.3s; animation: shake-animation; animation-iteration-count: infinite; color: #555;}
 
-            <div class="dropdown">
-                <button class="dropbtn">Interview ▾</button>
-                <div class="dropdown-content">
-                    <a onclick="showHome()">Broxton Interview</a>
-                    <a onclick="showHome()">Covell-Murthy Interview</a>
-                    <a onclick="showHome()">Wilkie Interview</a>
-                </div>
-            </div>
-        </nav>
+        .green-banner a:hover,
+        .orange-banner a:hover,
+        .dark-banner a:hover {
+          display: inline-block;
+         animation: shake-animation 0.3s infinite;}
 
-        <section id="home-view">
-            <div class="hero-title-box">
-                <h1>Specialization<br>Dossier</h1>
-                <h3>Emi Marrujo and Rio Soluaga</h3>
-            </div>
+         /* Base style for the split row */
+         .split-section {display: flex; align-items: center; width: 100%; background-color: #F4EFE5; margin-top: -1px;}
+
+         /* Class for Photo on Left, Text on Right */
+         .img-left {flex-direction: row;}
+
+         /* Class for Text on Left, Photo on Right */
+         .img-right {flex-direction: row-reverse;}
+
+         .split-text {flex: 1; padding: 80px; color: #F4EFE5}
+
+         .split-image-floating {flex:1; padding: 40px; display: flex; justify-content: center; align-items: center;}
+         .split-image-floating img {
+    width: 100%;
+    height: auto; /* Match this to your text block height */
+    border-radius: 12px; /* This keeps the photo from looking squashed */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Zoom effect when hovering over the photo link */
+.split-image-floating a:hover img {
+    transform: scale(1.05);
+}
+
+         /* Keeps it tidy on mobile */
+         @media (max-width: 768px) {.split-section {lex-direction: column !important;}}
+             .split-image {width: 100%; height: 300px;}
+
+             .full-bleed {width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; display: block;}
+    </style>
+    <script>
+        function show(id) {
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('tasks-view').style.display = 'none';
+            document.getElementById('market-view').style.display = 'none';
+            document.getElementById('training-view').style.display = 'none';
+            document.getElementById('transcript-view').style.display = 'none';
+            document.getElementById('biblio-view').style.display = 'none';
+            if(id !== 'home-view') document.getElementById(id).style.display = 'block';
+            else document.getElementById('home-view').style.display = 'flex';
+            window.scrollTo(0, 0);
+        }
+    </script>
+</head>
+<body>
+  <nav class="navbar">
+  <button class="dropbtn" onclick="show('home-view')">Overview</button>
+
+  <div class="dropdown">
+      <button class="dropbtn">A Peek Inside ▾</button>
+      <div class="dropdown-content">
+          <a onclick="show('tasks-view')">Typical Tasks</a>
+          <a onclick="show('profresh-view')">Professional Context</a>
+          <a onclick="show('market-view')">Job-Market Outlook</a>
+          <a onclick="show('skill-view')">Technical Skill Snapshot</a>
+          <a onclick="show('training-view')">Training Agenda</a>
+          <a onclick="show('labor-view')">Labor Trends</a>
+      </div>
+  </div>
+
+  <div class="dropdown">
+      <button class="dropbtn">Interview ▾</button>
+      <div class="dropdown-content">
+          <a onclick="show('transcript-view')">Transcript</a>
+      </div>
+  </div>
+  <div class="dropdown">
+      <button class="dropbtn">Bibliography ▾</button>
+      <div class="dropdown-content">
+          <a onclick="show('bibli-view')">Annotated Bibliography</a>
+      </div>
+  </div>
+</nav>
+
+<section id="home-view">
+    <div class="hero-wrapper">
+        <div class="hero-title-box">
+            <h1>Specialization<br>Dossier</h1>
+            <h3>Emi Marrujo and Rio Soluaga</h3>
+        </div>
+    </div>
+
+    <div class="dark-banner">
+        <h2>Overview</h2>
+        <p>...</p>
+      </div>
+</section>
+
+    <section id="tasks-view" class="page-content">
+        <header class="page-banner">
+        <img src="typicaltaskshomescreen.jpg" alt="Typical Tasks Banner"></header>
+        <img src=typicaltaskspic1.jpg class="full-width-img" alt= Typical Tasks Detail>
+        <div class="text-block">
+            <p>Through a mixture of consulting our interviewee, and referencing job postings, here are the typical tasks and duties for the varying leadership and professional levels associated with a Director of a Research Library & Archives, both in and out of the workstation.</p>
+        </div>
+        <section class="dark-banner">
+            <h2>Sample Job Postings</h2>
+            <p><a href="https://www.gapinc.com/en-us/jobs/w49/48/archivist?rx_id=d7f42a49-e06f-11f0-905a-057eca44bdfe&rx_job=R204948&rx_medium=post&rx_paid=0&rx_r=none&rx_source=linkedin&rx_ts=20260302T165007Z&src=JB-10340&rx_viewer=2792756016b411f1914837060a74509a2febae78ce5d4497afd7412268287d37" target="_blank">Archivist</a>, at Gap Inc.<br>
+            <a href="https://careers.harvard.edu/job/librarian-for-japanese-studies-in-cambridge-ma-united-states-jid-1123?_atxsrc=linkedin&utm_source=linkedin" target="_blank">Librarian for Japanese Studies</a>, at Harvard University<br>
+            <a href="https://careers.archivists.org/jobs/22054958/?utm_source=265396&utm_medium=featuredJobs&utm_campaign=mainLanding&utm_term=?utm_source=265396&utm_medium=featuredJobs&utm_campaign=mainLanding&utm_term=#expand" target="_blank">Director, Chesney Medical Archives</a>, at Johns Hopkins University School of Medicine<br>
+            <a href="https://jobs-getty.icims.com/jobs/4740/special-collections-archivist-i/job?mode=job&iis=LinkedIn&iisn=LinkedIn&mobile=false&width=710&height=500&bga=true&needsRedirect=false&jan1offset=-480&jun1offset=-420" target="_blank">Special Collections Archivist I</a>, at The Getty<br>
+          </p>
         </section>
+    </section>
 
-        <section id="content-view">
-          <header id="dynamic-banner" class="page-banner"></header>
+    <section id="market-view" class="page-content">
+        <header class="page-banner">
+        <img src="jobmarkethomescreen.jpg" alt="Job Market Banner"></header>
+        <div class="split-section" style= "background-color: #2D3728;">
+          <div class="split-text">
+                  <p>      According to a recent SJSU MLIS grad and our interviewee, the job market for libraries is slim. It may take up to one year after graduation of consistent applications to get a job, and it likely will not be in one’s preferred field. Throughout the year, applicants may be invited to an interview from about 25% of their applications, and to a second interview from even fewer.
+          </p>
+          </div>
+    <div class="split-image-floating">
+      <a href="https://www.munch.no/en/visit-us/research-library/" target="_blank">
+        <img src=outlookpic1.jpg>
+      </a>
+    </div>
+    </div>
+    <div class="split-section" style= "background-color: #2D3728;">
+      <div class="split-image-floating">
+              <img src="outlookpic2.jpg">
+      </div>
+    <div class="split-text">
+        <p>Our interviewee described a type of job search where the Public Library system accepts applications once every six months. Within those six months, positions will open, and one may be called for an interview. If one is not called back after six months, they reenter their resume into the pool. They describe an uncertain application system and one in which applicants far outnumber available positions, contributing to a slim job market.
+        <br>Yet, while the traditional librarian job is scarce, there is a booming market for non-traditional information studies professions.
+    </div>
 
-              <div class="text-block">
-                  <p>
-                         Through a mixture of consulting our interviewee, and referencing job postings, here are the typical tasks and duties for the varying leadership and professional levels associated with a Director of a Research Library & Archives, both in and out of the workstation.
-                  </p>
-              </div>
-              <div class="sub-banner">
-                <h2>Overarching Duties</h2>
-                <p>Optimizing Collections Management<br>Research<br>Metadata<br>Project Management<br>Collection Curation<br>Administrative Tasks<br></p>
-                <h2>Social Duties</h2>
-                <p>Training & Supervising, Leadership<br>Cultivating Relationships with Donors<br>Professional Collaborations<br>Community Engagement
-              </div>
-              <section id="dark-banner" class="dark-banner">
-                <h2>Sample Job Postings</h2>
-                <p><a href="https://careers.archivists.org/jobs/22054958/?utm_source=265396&utm_medium=featuredJobs&utm_campaign=mainLanding&utm_term=" target="_blank" style="color: #F4EFE5; text-decoration: underline;">Director, Chesnew Medican Archives</a>, at John Hopkins University School of Medicine
-                <br><a href="https://jobs-getty.icims.com/jobs/4740/special-collections-archivist-i/job?mode=job&iis=LinkedIn&iisn=LinkedIn&mobile=false&width=710&height=500&bga=true&needsRedirect=false&jan1offset=-480&jun1offset=-420" target="_blank" style="color: #F4EFE5; text-decoration: underline;">Special Collections Archivist</a>, at The Getty
-                <br><a href="https://www.gapinc.com/en-us/jobs/w49/48/archivist?rx_id=d7f42a49-e06f-11f0-905a-057eca44bdfe&rx_job=R204948&rx_medium=post&rx_paid=0&rx_r=none&rx_source=linkedin&rx_ts=20260302T165007Z&src=JB-10340&rx_viewer=2792756016b411f1914837060a74509a2febae78ce5d4497afd7412268287d37" target="_blank" style="color: #F4EFE5; text-decoration: underline;">Archivist</a>, at Gap Inc.
-                <br><a href="https://careers.harvard.edu/job/librarian-for-japanese-studies-in-cambridge-ma-united-states-jid-1123?_atxsrc=linkedin&utm_source=linkedin" target="_blank" style="color: #F4EFE5; text-decoration: underline;">Librarian for Japanese Studies</a>, at Harvard University
-              </p>
+</div>
 
+<img src="outlookpic3.jpg" class=full-bleed>
+
+        <div class="sub-banner">
+          <div class="column-container">
+            <p>While the library system is a field with a slimming and uncertain market, it is not the only field option for MLIS graduates and librarians in training. The market for jobs requiring MLIS expertise is quite large, yet not exactly where one might expect. Jobs such as data management and curation, metadata organization, research analyst, and archiving/records management are fields calling for those with MLIS knowledge.</p>
+            <p>As digital data is created and institutions begin to accumulate that data, they must also find someone who can organize, catalogue, and communicate the data to the public, providing a growing market to MLIS graduates and those looking to work in an information field, and serve as they would if a librarian, albeit a little unconventional.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="training-view" class="page-content">
+        <header class="page-banner">
+            <img src="trainingagendahomescreen.jpg" alt="Training Agenda Banner">
+        </header>
+        <section class="orange-banner">
+          <p>      To enter a profession such as the Director of a Research Library & Archives, one should prioritize work in the field, including class projects, unpaid internships, and data management. Arial mentioned the importance of specifically taking classes that discuss cataloging, and classes that improve one’s technical coding skills, such as becoming familiar with building websites or databases.
       </section>
+      <div class="text-block">
+        <div class="column-container">
+        <h2>Non-University Training</h2>
+        <p>
+        </div>
+      <div class="green-banner">
+        <h2>Your Internship Hotspot</h2>
+        <p>Volunteer at LAPL: <a href="https://www.lapl.org/get-involved/volunteer" target="_blank">https://www.lapl.org/get-involved/volunteer</a>
+          <br>Digital Cataloguing Internships: <a href="https://newlibrarianrefshelf.omeka.net/items/show/39" target="_blank">https://newlibrarianrefshelf.omeka.net/items/show/39</a>
+        </p>
+     </div>
+      <section class="dark-banner">
+        <h2>Recommended Coursework @ UCLA</h2>
+         <p>228. Assessment, Measurement, and Evaluation of Information Organizations and Services
+           <br>233. Records and Information Resources Management
+           <br>240. Management of Digital Records
+           <br>241. Digital Preservation
+           <br>M244. Collection Management for Archives, Libraries, and Museums
+           <br>262A. Data Management and Practice
+           <br>262B. Data Curation and Policy
+           <br>272. Human/Computer Interaction
+           <br>274. Database Management Systems
+           <br>434. Archival Use and Users
+           <br>461. Descriptive Cataloging
+           <br>462. Subject Cataloging and Classification
+           <br>486. Digital Asset Management</p>
+     </section>
+  </section>
+    <section id="profresh-view" class="page-content">
+          <header class="page-banner">
+              <img src="profreshhomescreen.jpg" alt="Professional Context Banner">
+          </header>
 
-    </body>
+        <div class="profresh-banner-container">
+          <img src=profreshpic1.jpg class="full-width-img" alt= profesh bottom header>
+          <div class="profresh-overlay-box">
+              <h2>Journals</h2>
+              <p>
+                <a href="https://www.press.jhu.edu/journals/library-trends?srsltid=AfmBOor89ari_hX3Ci9t9SqOj5Cpu9dF2PGdRfRYMpv3Y2mhR6v-pQDy" target="_blank">Library Trends</a><br>
+                <a href="https://crl.acrl.org/index.php/crl" target="_blank">College & Research Libraries</a><br>
+                <a href="https://www.press.jhu.edu/journals/portal-libraries-and-academy" target="_blank">Portal: Libraries and the Academy</a><br>
+                <a href="https://www.sciencedirect.com/journal/the-journal-of-academic-librarianship" target="_blank">The Journal of Academic Librarianship</a><br>
+              </p>
+          </div>
+        </div>
+
+        <div class ="text-block">
+          <h2>Professional Associations</h2>
+        </div>
+
+        <div class="text-block" style="background-color: #f4efe5;">
+          <div class="floating-row">
+            <div class ="floating-card-half">
+              <img src=profreshpic2.jpg>
+          <h2>Library Associations</h2>
+          <p>
+            <a href="https://www.ala.org" target="_blank">American Library Association</a><br>
+            Student membership: $40<br>
+            CA State Chapter: $3<br>
+            Offers Student and professional Scholarships<br><br>
+            <a href="https://www.ala.org/aboutala/rts" target="_blank">Library Research Round Table</a><br>
+            Membership fee: $5<br><br>
+            <a href="https://www.ala.org/acrl" target="_blank">Association of College and Research Libraries</a><br>
+            Membership fee: $5<br>
+            Offers awards and grants<br><br>
+            <a href="https://www.ala.org" target="_blank">Association of Research Libraries</a><br>
+            Offers Professional development scholarships<br>
+            <a href="https://carl-acrl.org" target="_blank">California Academic & Research Libraries</a><br>
+            Student membership: 1 year $20<br>
+            Offers Conference scholarships and Research grants
+          </p>
+        </div>
+
+        <div class = "floating-card-half">
+          <img src = "profreshpic3.jpg">
+          <h2>Museum Associations</h2>
+          <p>
+            <a href="https://westmuse.org" target="_blank">Western Museums Association</a><br>
+            Membership: Emerging Museum<br>
+            Professional/Student $35<br>
+            Offers Student, conference and professional Scholarships<br><br>
+            <a href="https://calmuseums.org/annual-conference/" target="_blank">California Association for Museums</a><br>
+            Student Membership $25<br>
+            Offers Grants<br><br>
+            <a href="https://blackmuseums.org" target="_blank">The Association of African American Museums</a><br>
+            1 year student membership: $25<br>
+            2 years student membership: $45<br>
+            Offers Fellowships, Student and professional development Scholarships <br><br>
+            <a href="https://www.atalm.org" target="_blank">The Association of Tribal Archives, Libraries, and Museums</a><br>
+            Membership fee: $25<br>
+            Offers Conference Scholarship <br>
+          </p>
+          </div>
+        </div>
+      </div>
+        <div class = "orange-banner">
+          <div class="column-container">
+            <div>
+        <h2>Conferences</h2>
+          <p>
+            <a href="https://www.atalm.org/conference-2026/" target="_blank">AOTALM</a><br>
+            <a href="https://www.google.com/search?client=safari&rls=en&q=California+Academic+%26+Research+Libraries+conferance&ie=UTF-8&oe=UTF-8" target="_blank">California Academic & Research Libraries</a><br>
+            <a href="https://web.cvent.com/event/edbded1f-38db-4c6e-acc6-3889bbd9780a/summary" target="_blank">Association of College and Research Libraries</a><br>
+            <a href="https://www.ischools.org/iconference" target="_blank">iConference</a><br>
+          </p>
+        </div>
+      <div>
+          <h2>Forems</h2>
+          <p>
+            <a href="https://www.ala.org/acrl/issues/scholcomm/scholcommdiscussion" target="_blank">SCHOLCOMM</a><br>
+            <a href="https://groups.io/g/liblicense-l" target="_blank">LIBLICENSE-L</a><br>
+            <a href="https://connect.ala.org/home" target="_blank">ALA Connect</a>
+          </p>
+        </div>
+        </div>
+      </div>
+
+      <div class = "green-banner">
+        <h2>Job Board :)</h2>
+        <p>
+        <a href="https://joblist.ala.org" target="_blank">ALA Job and Career Center</a><br>
+        <a href="https://www.atalm.org/job-opportunities/" target="_blank">Association of Tribal Archives, Libraries and Museums</a><br>
+        <a href="https://westmuse.org/job_board" target="_blank">Western Museum Association</a><br>
+        <a href="https://members.calmuseums.org/job-board" target="_blank">California Association of Museums</a><br>
+        <a href="https://blackmuseums.org/jobs/" target="_blank">The Association of African American Museums- members only </a><br>
+      </p>
+      </div>
+      </section>
+    </section>
+
+      <section id="skill-view" class="page-content">
+          <header class="page-banner">
+              <img src="skillshomescreen.jpg" alt="Technical Skills Banner">
+          </header>
+          <div class="green-banner">
+              <p>Typical tasks for the San Diego Natural History Museum (NAT) Director of Research Library and Archives are flexible. In smaller museum library roles, one can expertly bring a mix of service skills, technological understanding, and a willingness to adapt and learn. Ariel at the NAT shared that most of her work is on the computer and that there is very little work with physical books. She also described how often “other duties as assigned” is where most of your actual job responsibilities end up, as new problems, projects, and tasks arise as you settle into the role.
+              </p>
+              </div>
+              <div class="text-block" style="background-color: #f4efe5;">
+                <div class="floating-row">
+                  <div class ="floating-card-half">
+                <h2>Transferable</h2>
+                <p>
+                  Customer service (librarianship, after all, is a service job!)<br>
+                  Interpersonal skills<br>
+                  Communication, collaboration, and diplomacy<br>
+                  Organization<br>
+                  Event planning<br>
+                  Public outreach<br>
+                  Fundraising and donor relations<br>
+                  Project managementv
+                  Programming (HTML, Python, R)
+                </p>
+              </div>
+
+              <div class = "floating-card-half">
+                <h2>Library specific Skills</h2>
+                <p>
+                  Cataloging (MARC, Subject headings and ILS interfaces)<br>
+                  Database understanding and data research skills<br>
+                  Structural data understanding - records files<br>
+                  Digitization<br>
+                  Exhibit curation
+                </p>
+                </div>
+              </div>
+            </div>
+            <div class="light-banner">
+              <p>Overall, within research librarianship, there is a growing demand for technological literacy and AI literacy as these become emerging aspects of the information profession.
+              </p>
+            </div>
+            <div class="text-block">
+              <h2>Read More on Library Skills Here!</h2>
+              <p>
+                <a href="https://www.bls.gov/ooh/education-training-and-library/librarians.htm#tab-4" target="_blank">U.S. Bureau of Labor Statistics</a><br>
+                <a href="https://crl.acrl.org/index.php/crl/article/view/24336/32167" target="_blank">Collage & Research Libraries</a><br>
+                <a href="https://www.ala.org/tools/programming/21stcenturyskills" target="_blank">American Library Association</a><br>
+              </p>
+              </div>
+            </section>
+    <section id="labor-view" class="page-content">
+                <header class="page-banner">
+                    <img src="labortrendshomescreen.jpg" alt="Banner">
+                </header>
+                <div class="green-banner">
+                  <p>The research librarian profession is growing slowly, with in-demand skills in media and interpersonal relations. However, entry into the field is becoming increasingly difficult. Based on interviews and research, we have identified the following trends:</p>
+                <div class="split-section" style= "background-color: #2D3728;">
+                  <div class="split-text">
+                          <p>UNPAID AND UNDERPAID EARLY-CAREER WORK:<br>
+Unpaid internships are common and often create structural barriers to entry, particularly for individuals who must juggle other responsibilities such as jobs, classes, or family obligations. This dynamic produces clear inequities: those with greater financial resources can effectively “pay” for experience, while others cannot afford to do so. As a result, opportunities are unevenly distributed. This reflects a broader pattern in fields such as librarianship and museums, where early-career professionals often feel pressured to accept unpaid or very low-paid roles simply to get a foot in the door.</p>
+                  </div>
+            <div class="split-image-floating">
+              <img src=laborpic1.jpg>
+            </div>
+            </div>
+            <div class="split-section" style= "background-color: #2D3728;">
+              <div class="split-image-floating">
+                      <img src="laborpic2.jpg">
+              </div>
+            <div class="split-text">
+                <p>MOVING AWAY FROM UNPAID INTERNSHIPS:<br>
+When discussing the issue with Ariel from the NAT, she described her efforts to move away from the practice of unpaid internships. She emphasized refusing to normalize unpaid work as the only valid pathway into the field and instead encouraged supervisors and organizations to budget for paid roles. As an alternative, she offers internships that provide course credit and partners with fellowship and grant programs to help secure funding for interns’ labor.
+</div>
+</div>
+</div>
+<div class="green-banner">
+  <p>The research librarian profession is growing slowly, with in-demand skills in media and interpersonal relations. However, entry into the field is becoming increasingly difficult. Based on interviews and research, we have identified the following trends:</p>
+<div class="split-section" style= "background-color: #2D3728;">
+  <div class="split-text">
+          <p>PERSONAL RESEARCH:
+As a research librarian, you are also encouraged to engage with your own research sounding your collection and library subject scope. When asked about personal projects, Ariel shared the level of flexibility her role allows, sharing how she is encouraged to conduct her own research on her personal interests outside of librarianship, noting how she can freely research mushrooms or community science as topics. Other institutions may require more topical research or not consider this part of the job duties. </div>
+<div class="split-image-floating">
+<img src=laborpic3.jpg>
+</div>
+</div>
+</div>
+<div class="green-banner">
+  <p>Like Ariel, many people enter the research library field out of passion rather than financial motivation. She noted that libraries and environmental nonprofits often rely on workers’ sense of “calling,” which can make overwork feel normal. She emphasized the importance of actively resisting the urge to just help one more person before going home. Ariel shared her personal work mantra: “It’s a marathon, not a sprint,” reminding herself to pace her efforts and not try to accomplish everything at once. This serves as an important lesson for those entering the field: to take things slowly and set a healthy reminder to balance personal life alongside professional responsibilities.
+  </p>
+</div>
+</section>
+<section id="transcript-view" class="page-content">
+  <header class=page-banner>
+    <img src="arialpic1.jpg">
+  </header>
+</section>
+
+<section id=bibli-view class=page-content>
+
+<script>
+    function show(id) {
+        // This list MUST include every single section ID you have
+        const views = [
+            'home-view',
+            'tasks-view',
+            'market-view',
+            'training-view',
+            'profresh-view',
+            'skill-view',
+            'labor-view',
+            'transcript-view',
+            'bibli-view'
+        ];
+
+        // Hide every single section first
+        views.forEach(v => {
+            const el = document.getElementById(v);
+            if (el) {
+                el.style.display = 'none';
+            }
+        });
+
+        // Now show only the one the user clicked
+        const target = document.getElementById(id);
+        if (target) {
+            if (id === 'home-view') {
+                target.style.display = 'flex';
+            } else {
+                target.style.display = 'block';
+            }
+        }
+
+        window.scrollTo(0, 0);
+    }
+  </script>
+</body>
 </html>
