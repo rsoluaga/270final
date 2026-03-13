@@ -8,9 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { width: 100%; overflow-x: hidden; font-family: Arial, sans-serif; background-color: #fdfaf1; }
+        html, body { width: 100%; overflow-x: hidden; font-family: Arial, sans-serif; background-color: #3e4c33; }
 
-        .navbar { display: flex; padding: 20px 40px; background: #3e4c33; gap: 20px; position: fixed; top: 0; width: 100%; z-index: 1000; vertical-align: top; border-bottom: none; box-shadow: none;}
+        .navbar { display: flex; padding: 20px 40px; background: #3e4c33; gap: 20px; position: fixed; top: 0; left:0; right: 0; z-index: 1000; vertical-align: top; border-bottom: none; box-shadow: none;}
         .dropbtn { background-color: transparent; color: white; border: none; font-weight: bold; cursor: pointer; font-size: 18px; text-transform: uppercase; }
         .dropdown { position: relative; display: inline-block; }
         .dropdown-content { visibility: hidden; opacity: 0; position: absolute; background-color: #E7ECD4; min-width: 220px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1); border-radius: 12px; padding-top: 15px; z-index: 1; transition: opacity 0.3s ease; }
@@ -36,7 +36,8 @@
         .text-block h2 { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 42px; margin: 20px 0; color: #555; }
 
         .sub-banner { width: 100%; background-color: #F4EFE5; display: flex; flex-direction: column; align-items: center; padding: 40px; text-align: center; margin-top:-1px; }
-        .sub-block p { color: #555; text-align: left; font-size: 18px; font-style: italic; line-height: 1.6; max-width: 800px; margin: 0 auto 50px auto; }
+        .sub-block p { color: #555; text-align: left; font-size: 18px; line-height: 1.6; max-width: 800px; margin: 0 auto 50px auto; }
+        .sub-block h3 { color: #555; text-align: left; font-size: 18px; line-height: 1.6; max-width: 800px; margin: 0 auto 50px auto; font-weight: bold; }
         .sub-banner h2 { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 42px; margin: 20px 0; color: #555; }
 
         .light-banner { width: 100%; background-color: #F4EFE5; display: flex; flex-direction: column; align-items: center; padding: 40px; text-align: center; margin-top:-1px; }
@@ -57,8 +58,9 @@
         .green-banner p { font-size: 18px; line-height: 1.6; color: #F4EFE5; margin-bottom: 20px; max-width: 800px; }
         .green-banner p a { font-size: 18px; line-height: 1.6; color: #F4EFE5 !important; margin-bottom: 20px; max-width: 800px; }
 
-        .bib-entry {padding-left: 40px; text-indent: -40px; margin-bottom: 30px; line-height: 1.6;}
-        .bib-annotation {text-indent: 0; padding-left: 0; margin-top: 10px; display: block; font-style: normal; color: #555;}
+        .bib-banner { width: 100%; background-color: #F4EFE5; display: flex; flex-direction: column; align-items: flex-start; padding: 40px 10%; text-align: left; margin-top:-1px; }
+        .bib-banner h3 {background-color: #F4EFE5; color: #555; padding: 10px 0px 10px 60px; text-indent: -60px; margin-bottom: 30px; text-align: left; font-size: 18px; font-style: italic; line-height: 1.6; max-width: 800px; margin-left: 0 !important; margin-right: 0;}
+        .bib-banner p {text-align: left; font-size: 18px; font-style: normal; line-height: 1.6; max-width: 800px; padding-left: 80px; margin: 0 !important; color: #555;}
 
         .full-width-img {width:100%; height: auto; display: block;}
 
@@ -76,16 +78,8 @@
         .floating-card p {font-size: 18px; line-height: 1.8; color: black;}
         .floating-row {display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 20px; max-width: 1100px; margin: 0 auto;}
         .floating-card-half {background-color: #E7ECD4; padding: 40px; flex: 1 1 45%; min-width: 300px; border-radius: 12px; box-shadow: 0px 15px 35px rgba(0,0,0,0.1); text-align: center;}
-        /* The background area behind the cards */
-.text-block, .floating-row-container {
-    background-color: #E7ECD4; !important;
-    padding: 60px 0;}
-    /* Ensure the titles inside the cards are readable */
-.floating-card-half h2 {
-    color: #333;
-    font-family: 'Libre Baskerville', serif;
-}
-
+        .text-block, .floating-row-container {background-color: #E7ECD4; !important; padding: 60px 0;}
+        .floating-card-half h2 {color: #333; font-family: 'Libre Baskerville', serif;}
 
         a{color: #3e4c33; font-weight: bold; text-decoration: underline;}
         @keyframes shake-animation {
@@ -103,30 +97,13 @@
           display: inline-block;
          animation: shake-animation 0.3s infinite;}
 
-         /* Base style for the split row */
+
          .split-section {display: flex; align-items: center; width: 100%; background-color: #F4EFE5; margin-top: -1px;}
-
-         /* Class for Photo on Left, Text on Right */
          .img-left {flex-direction: row;}
-
-         /* Class for Text on Left, Photo on Right */
          .img-right {flex-direction: row-reverse;}
-
          .split-text {flex: 1; padding: 80px; color: #F4EFE5}
-
          .split-image-floating {flex:1; padding: 40px; display: flex; justify-content: center; align-items: center;}
-         .split-image-floating img {
-    width: 100%;
-    height: auto; /* Match this to your text block height */
-    border-radius: 12px; /* This keeps the photo from looking squashed */
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-/* Optional: Zoom effect when hovering over the photo link */
-.split-image-floating a:hover img {
-    transform: scale(1.05);
-}
+         .split-image-floating img {width: 100%; height: auto; border-radius: 12px; display: block; transition: transform 0.3s ease;}
 
          /* Keeps it tidy on mobile */
          @media (max-width: 768px) {.split-section {lex-direction: column !important;}}
@@ -186,9 +163,16 @@
         </div>
     </div>
 
-    <div class="dark-banner">
+    <div class="green-banner">
         <h2>Overview</h2>
-        <p>...</p>
+        <p>Through an interview process and various references, this dossier explores the profession of a Research and Archives Librarian. A balance of cataloging coursework, technology skills, hands-on experience, and networking opportunities can help propel someone into this professional career. While the general job outlook is daunting, relevant hands-on experience will increase one’s likelihood of success in the industry.
+
+<br><br>Hands-on experience in the field not only provides important skills but also helps build a network within library science. Through our research for this dossier, we learned that often, who you know determines where you apply and the likelihood of landing a job. Ariel Hammond from the San Diego Natural History Museum shared that the field is small, and when applying for jobs, if the person being hired has worked for someone you trust, that already says a lot about their ability to perform well. Ariel suggests taking every opportunity you can during your MLIS degree because you never know what skill or connection could be useful later.
+
+<br><br>In researching the skills necessary for success in research librarianship, we uncovered that in today’s cultural landscape, being an information professional also means being tech-savvy. Through our interview with Ariel Hammond, we uncovered the layered nuances and uses of technology within research librarianship today. Developing foundational technology skills for a résumé is important, but, as Ariel described, a mindset of continual learning in the field is even more critical, as our digital landscape will continue to shift.
+
+<br><br>While the job market for librarians is trending downward, the demand for the skills that librarians provide is increasing. This dossier offers a unique perspective on the job market for aspiring librarians and the journey that those before us have taken to achieve their goals.
+</p>
       </div>
 </section>
 
@@ -255,7 +239,17 @@
         <div class="column-container">
         <h2>Non-University Training</h2>
         <p>
+          <a href="https://www.cla-net.org/page/454" target="_blank">California Library Association Programs</a><br><br>
+          <a href="https://www.lbcc.edu/post/library-technician-certificates" target="_blank">Long Beach CC Librarian Technician Certificates</a><br><br>
+          <a href="https://callacademy.org/learning-for-support-staff/" target="_blank">California Libraries Learn Courses, Webinars</a><br><br>
+        </p>
+        <p>
+          <a href="https://www.ala.org/aboutala/offices/library-support-staff-education-and-training" target="_blank">American Library Association Library Support Staff and Education Training</a><br><br>
+          <a href="https://libraryjuiceacademy.com" target="_blank">Juice Box Librarian Development Courses</a><br><br>
+          <a href="https://www.webjunction.org/home.html" target="_blank">WebJunctions Librarian Webinars & Articles</a><br><br>
+        </p>
         </div>
+      </div>
       <div class="green-banner">
         <h2>Your Internship Hotspot</h2>
         <p>Volunteer at LAPL: <a href="https://www.lapl.org/get-involved/volunteer" target="_blank">https://www.lapl.org/get-involved/volunteer</a>
@@ -476,13 +470,335 @@ As a research librarian, you are also encouraged to engage with your own researc
   <header class=page-banner>
     <img src="arialpic1.jpg">
   </header>
+  <div class="sub-banner">
+    <h2> Transcript!</h2>
+    <p>
+
+      Wed, Feb 25, 2026 10:03AM • 57:54<br><br></p>
+      <h3>SUMMARY KEYWORDS<br></h3>
+      <p>Library science, data management, AI analysis, generative AI, digital collections, weeding project, community science, library exhibits, research librarianship, technical skills, unpaid internships, networking, institutional values, open access, metadata.<br><br></p>
+      <h3>SPEAKERS<br>
+      Emilia Marrujo and Arial Hammond<br><br>
+
+      Emi Marrujo 00:00<br></h3><p>
+      Could just start by having you introduce yourself, like your name and your position.<br><br>
+</p><h3>
+      Ariel Hammond  00:07<br></h3><p>
+      Okay, so my name is Ariel Hammond. I am the Director of Research Library Archives at the San Diego Natural History Museum, splendid.<br><br>
+</p><h3>
+      Emi Marrujo  00:19<br></h3>
+      And then I remember we kind of talked about things already, but that's kind of also why I wanted to interview you, because I remember just everything being so, like, cool and interesting, like I said, I know we've kind of talked about things before, but just for the interview standard purposes, yeah, do you mind sharing a little bit about, like, what you do in your job, like, what a typical day might look like? <br><br>
+<p><h3>
+      Ariel Hammond 00:49<br></h3><p>
+      Sure, So I have, I think, a fairly unique position in that, as a director of a small special library, I oversee, really, a department of one. It's just me doing everything I have right now three interns, but those internships are usually short term, and I have, I think, five to six volunteers who come in pretty frequently. So a typical day for me is usually juggling a lot of things or wearing a lot of different hats. I oversee our main collection, the Circulating Collection, as well as our rare book room, artworks, photographs and archives and our map collection, and then I also oversee a dedicated library exhibit, which is a really cool way to share treasure, and then also communicate our science with the public. I will say also I'm a curator at the museum, I have a lot of, like, administrative tasks, and am asked to go to a lot of meetings or sit on committees and kind of do sort of senior leadership things around the museum.<br><br>
+</p><h3>
+      Emi Marrujo 02:15<br></h3><p>
+      Okay, yeah, that makes sense. I remember you sharing that you had a different MLAs background that was like kind of a different role than what you are in now. So is there any like specializations that you currently have or use within your role?<br><br>
+</p><h3>
+      Ariel Hammond 02:35<br></h3><p>
+        I do, yeah. So I have a Master's of information from Rutgers, which covers both library science and data science. So I do oversee, you know, a lot of data management within the museum, and help lead kind of some data management priorities and initiatives, and that covers everything from just how to store photos on our internal, you know, file system, to working on database migrations, weighing in on new technologies, Things like that. So that's I might be out of the realm of many librarians, though I do think that technology is really so important to our field, and I encourage people to study more technology whenever possible.<br><br>
+</p><h3>
+      Emi Marrujo 03:35<br></h3><p>
+      Yeah, I guess we'll kind of jump ahead in that term, since we're already on the topic of technology. Do you think that, like, now with AI? Are you finding that you're using AI more within your job, or is, like, your institution a little bit hesitant with that? I remember seeing a post that they're using it in the Entomology Department, but like, how is the library research department using it or not?<br><br>
+</p><h3>
+      Ariel Hammond 03:59<br></h3><p>
+      Yeah, that's it's a very interesting question, and it's a very big topic. As an organization, we tend to be against generative AI, and I personally am a bit wary of generative AI, because generative AI, it's not just taking away creativity from humans, it's assuming there is an answer for everything, and there isn't always. So if you ask generative AI a question, something like chat GPT, it will give you an answer, even if no answer exists. And I think that's something that humans can handle the ambiguity better, and there are a lot of ethical issues around generative AI. That said, we use AI at the museum for analysis very often. So we could have, like with entomology data sets that are so huge a human literally cannot analyze all of the data in there. Maybe it is a camera trap project that has a million images. It would take humans so long to go through every single image to identify things in there, whereas you can train a computer model to look for things, and then the human comes through and verifies with insects. There's so many insects on a little tray. AI can quickly say, this is a fly, this is a spider. And then the human can go through and really determine what they're looking at within the library, we tried AI just once with cataloging, I had some people work on cataloging who were having a tough time understanding that cataloging is both a science and an art form, that there are so many rules and that there's also so much flexibility and ambiguity. And so even just for generating subject headings, they felt very uncertain and unsure of themselves. So they would put the ISBN into chat GPT and say, generate 10 subject headings. And it helps that person, I believe. But I do think that they could have easily just looked at a table of contents or the abstract of the book and gotten those same subject headings. So they had tried at one point with cataloging. But again, it's still chat. GPT will give you an answer and give you all of this information about an item that is not correct. Yeah. So, yeah, we had a little trial balloon with that, and we have not pursued that any further.<br><br>
+</p><h3>
+      Emi Marrujo  06:56<br></h3><p>
+      No, I'm really, like, I really resonate with you like it gives a single answer regardless. And my, one of my other classes for my final paper, it's when I'm doing my whole thing about search engines and chat GBT and chat bots, like single answer thing and what that means for information access for just like the general public. But I digress, it's a great topic this entire hour. I'm sure I've just been enjoying doing the reading for it. But um, do you anticipate that like AI analysis? Because I know people, when they think of AI, they're just thinking about, like, chat bots and generative AI, but I know like within research, it's more of the analysis type of AI. Do you envision it being more utilized within the library? Or do you think it's going to be about the same moving forward?<br><br>
+</p><h3>
+      Ariel Hammond 07:52<br></h3><p>
+      I can see it being used for things like, like, if I want to analyze my library, for subjects like which subject is the most represented, or something, and taking all of that data, putting it into something that can process it for me. And it's really hard when you get into AI, because there are some things that computers are already doing and have been doing for us. So my ILS, I can ask, what is the average age of all of the items in my library? And I think the average age is something like 60 years old. So to me, that shows I have a lot of really out of date items. But I could ask AI, or I could program myself some sort of code saying, okay, remove all books from before 1800 to take all of the rare books out of it and then calculate the age, right? Like doing just some of these deeper steps that would be really interesting and helpful to look at the collection for things like research, people always want to use them to say, summarize this article for me. And in some ways, that can be very helpful and save a lot of time, and in other ways, you can miss a lot of nuance. And I worry that AI really doesn't have enough guard rails yet. There's still a lot not known about the ethics, about copyright. We can't just take something that's under a pay wall, put it into AI and say, summarize all of this, because AI hasn't been approved to read that and whatever you put into chat GPT can be used by others, so it gets into some really deep ethical and legal issues there.<br><br>
+</p><h3>
+      Emi Marrujo  09:51<br></h3><p>
+      Yeah, yeah. And I'm sure, like most libraries, kind of want to stay within the realms of copyright law and ethics, and that's kind of like as a profession, part of ethical considerations. Don't know so much about Silicon Valley, but so moving a little bit back to, like your daily tasks and things like that. Are there any projects you're currently working on? And I remember last time you shared about the one museum, one book and then within the library, or like that are continuous, or just like things that you regularly are like, Okay, that didn't make much sense. Like short term things, or like continuous projects, yeah, for sure.<br><br>
+</p><h3>
+      Ariel Hammond 10:39<br></h3><p>
+      So, um, you mentioned the one book project that's a one where we're connecting really deep with some of our patrons. The number of people who attend is fairly small. It jumped from about half a dozen two years ago to about 20 to 30 consistently last year, which was good for us, and so we've gotten to know those people really well, whereas I also am digitizing a lot of our photographs and putting those up online. With that, we're reaching a massive number of people, but we had, I think, 30,000 views of our digitized photos last year. So it's showing me that there's this huge audience for our materials. But I don't know who those people are, right? I don't know their names or faces or anything. So it's these two different audiences that I'm working with and connecting to. And then within the library itself, I'm actually undergoing a huge weeding project. We're removing a lot of materials that don't have anything to do with our mission region, and that's one that I'm doing in partnership with the other departments in the museum. So even just yesterday, I had a meeting with our paleo department to say we think these are things that we can get rid of. But I am a book organizing expert. I am not a paleontology expert, so I don't know which books and journals are most important to them, so it's really working with them. Of Oh, this one is more important that we didn't realize when we thought was important, they say, No, we don't need that. And then also everything that we're getting rid of making sure there's still a copy nearby we can borrow if needed. Is it digitized somewhere? Who are we sending these to once we get rid of them? So there are a lot of considerations with that big project.<br><br>
+</p><h3>
+      Emi Marrujo 12:48<br></h3><p>
+      Yeah, and it kind of sounds like, I'm like, I remember hearing before it's like, very collaborative between the different departments, like, where before was a little bit like singular, but now you guys are trying to connect them versus even though you kind of are one person fits all within your area, but trying to make the links between,<br><br>
+</p><h3>
+      Ariel Hammond 13:10<br></h3><p>
+      you know, it's even though it's my collection to oversee. I am not the only primary audience. And so I think when making these big considerations, it's important to include the audience, the primary patrons, and it's also important to think about what the backlash might be. If I had just decided to get rid of all of these items, I would take off every department in the museum for people that have worked here for so long and will work here for so long. And also, I don't want the public to see and say, Oh, the library at the Natural History Museum is getting rid of all their resources. What are they doing? You know for them to know that this was thoughtful, collaborative. We're not just tossing important things just for fun, right? Because we have a lot of public trust as a<br><br>
+</p><h3>
+      Emi Marrujo 14:11<br></h3><p>
+      public institution, yeah, and I'm sure that really kind of informs your work practices back to like, the ethics and like AI use as well.<br><br>
+</p><h3>
+      Ariel Hammond  14:21<br><h3><p>
+      And you know, you also want to think like, even though there are sometimes where the shelves are so full and we literally can't shelve another item in there because they're so compacted, like to be patient, there is a process we will get there officially,<br><br>
+</p><h3>
+      Emi Marrujo 14:36<br></h3><p>
+      yeah, so I guess we can kind of move to a different area, a little bit more about professional contexts and the work you do as a library professional. So are you part of any organizations that inform your work within the research institution?<br><br>
+</p><h3>
+      Ariel Hammond 14:58<br></h3><p>
+      Yeah, so on the library side, you know, I'm a member of ALA and ACRL and Carl, the California Association of Research Libraries.<br><br>
+</p><h3>
+      15:09<br></h3><p>
+      I believe, yeah,<br><br>
+</p><h3>
+      Ariel Hammond  15:12<br></h3><p>
+      Those are kind of my big three. As a small museum library, we're still a research library, so research references, those are the topics that are most important and relevant to me, but then also within the oh and on the library side, I'm the advisory chair for the Palomar Community College Library program. So I went through that program. I really enjoyed it. I've been involved with them ever since I graduated, and so now I'm working with the advisory committee to help steer their library education, which I think is so valuable. Yeah, then on the museum side, I'm also on the board for the Western museums association that is really focused on museums, kind of west of the Rockies. And I've been on the board for, gosh, three or four years now, and I really love it, because it's, again, both libraries and museums, so much of what we do is sharing with the public, right, sharing our information, trying to connect, trying to support the community. And so I see both of those sides really coming together in a lot of the work I do.<br><br>
+</p><h3>
+      Emi Marrujo  16:40<br></h3><p>
+      Yeah, it's kind of in the unique intersection, like, where the museum and the library. <br><br>
+</p><h3>
+      Ariel Hammond  16:49<br></h3><p>
+      And if you think of it like, a lot of libraries have little exhibit spaces where they're showing, you know, here's some cool things from storage. Here's maybe during Black History Month, here's a little exhibit. On materials we have during pride or something like that. So there really are a lot of connections between these two worlds.<br><br>
+</p><h3>
+      Emi Marrujo  17:11<br><h3><p>
+      Yeah, it's also, I think, like the informational display that both of them have to consider for public engagement, kind of like, but two aspects of how you come about that absolutely. So, have you attended any conferences in relation to these organizations in the past, or plan to in the future?<br><br>
+</p><h3>
+      Ariel Hammond  17:33<br></h3><p>
+      You know, I went there with the special Library Association. Used to be very large in Southern California, it went through some really tough times during covid, and really hasn't come back. So I haven't gone to SLA in quite a few years. I have not been to Ala because it seems a bit overwhelming to me, and it also, you know, I think would focus so much on public libraries, children's libraries, and those are just things that aren't as applicable to me. So I haven't attended those. I have gone to a lot of virtual conferences and to the I School conferences. So the information schools, the i conference happens every year, and it alternates between the US and an international post every year, and they have some of the coolest topics that are really just pushing the boundaries of research within librarianship so that one, to me, is always so inspiring to see, like the cool, new things that people are doing. I really love that one. The Carl conference is coming up in April. I think they do that one every other year, and that's a virtual one this year.<br><br>
+</p><h3>
+      Emi Marrujo 18:59<br></h3><p>
+      I believe, okay, yeah, I didn't know about the I School one. The I<br><br>
+</p>><h3>
+      Ariel Hammond  19:04<br></h3><p>
+      school one's really cool. I recommend looking into that one. It can be a little pricey, and again, it's very super academic. I went to one about data mining, and it felt like the whole thing was just like math. The whole time, I was like, Oh, this is much deeper than I expected, but it's they have some really cool topics there, so I recommend looking into<br><br>
+</p><h3>
+      Emi Marrujo  19:25<br></h3><p>
+      that one. Do you find that like you go to these and then like, what you learn comes back and like informs your practice, and like shifts things within your library setting?<br><br>
+</p><h3>
+      Ariel Hammond 19:34<br></h3><p>
+      Absolutely sometimes it's just helpful to meet other people and feel like you're not alone in the work that you're doing, but there are other times where I'm just exposed to cool, new ways to do things again. I love technology, things that can make life easier. It is always great, but even looking at the behavior of patrons, yeah, I really, I always learn a lot. I come back with so many ideas. I'm usually exhausted, and I have to remember to pace myself with everything<br><br>
+</p><h3>
+      Emi Marrujo  20:09<br></h3><p>
+      I've learned. Yeah, I feel like I'm like, the same way right now, like, with my like, paper topic research. I'm like, Oh my gosh, I'm learning so much. Like, what if I do this? I'm like, no, no. Calm down. One stay in one line for now. We can branch out later,<br><br>
+</p><h3>
+      Ariel Hammond 20:24<br></h3><p>
+      totally normal.<br><br>
+</p><h3>
+      Emi Marrujo  20:28<br></h3><p>
+      So within that, do you have a research library space? Do you conduct your own research? And if so, like, what are the protocols or path along that, you know?<br><br>
+</p><h3>
+      Ariel Hammond  20:40<br></h3><p>
+      So that's actually a very interesting question, because that gets into human research, and you have to be very careful of evaluating programs versus researching the humans that are using your library. If you do any sort of human research, you need an IRB, which is the Institutional Review Board approval. So if I wanted to evaluate my patrons, I could say, I could say, like, you know, here's what's been used the most in the library. Here are the subjects that are used the most. Here's how they reviewed this program. But if I were to write a paper about their information behaviors, that takes it to a whole another level of academic oversight, and so that can be very tough, yeah, trying to just do, like, library human research. So finding that line, you have to be very clear and thoughtful when we talk about the ethics behind things. Whereas, if I want to, I like to study mushrooms, I can write papers on mushrooms all day like that's totally fine. Nobody is going to bring that up with an injury or an IRB or anything like that. So, there are some ways that you have to be careful. Again. I like to write a lot about community science, the idea that people can do science in their backyards without needing a professional degree. And I can write about that topic. But again, if I want to interview people who are doing community science, it needs much more academic oversight.<br><br>
+</p><h3>
+      Emi Marrujo  22:35<br></h33><p>
+      Yeah, I remember the Well, when I went last the special library exhibit talks a lot about community like the first community like, the first community<br><br>
+</p><h3>
+      22:42<br></h3><p>
+      science. Oh no, I'm just gonna mute myself.<br><br>
+</p><h3>
+      Emi Marrujo  22:46<br></h3><p>
+      Yeah, the community science aspects of, like, early naturalists and things and kind of their their contribution to what we think of the standard science now didn't always have professional degrees like we think you need now,<br><br>
+</p><h3>
+      23:03<br></h3><p>
+      but yeah, so I think we can kind of shift. I mean, I don't want to<br><br>
+</p><h3>
+      Emi Marrujo  23:12<br></h3><p>
+      disrupt your if you can't speak right now, that's totally fine. So I can also just talk about what we're going to go into next, which would be more like the technical skills and expectations?<br><br>
+</p><h3>
+      23:27<br></h3><p>
+      Sure, that'd be great. So kind of like wondering, what are some of the<br><br>
+</p><h3>
+      Emi Marrujo 23:36<br></h3><p>
+      like, kind of, if someone was to write a resume or something like that, like, what are the like hard or soft skills that you use in your job, and then also, which ones were you not expecting to use and kind of developed as you like stepped into this position, not necessarily ones you gained in your MLS program.<br><br>
+</p><h3>
+      Ariel Hammond 23:58<br></h3><p>
+      You know, for soft skills, I typically say anyone who has worked any sort of customer service job can apply that to library work, because we are a service industry, basically so knowing how to triage requests that are coming in, how to help someone when they have a question and even ask a few more questions, to dig to see what their question really is. You know, if someone comes in and just says, Hey, I want books about dragonflies. Okay, that's cool. Why do you want it? Oh, I'm looking at their mating reproductive behavior. Oh, that helps me direct you to the proper resources. So those are kind of soft skills that you gain on the job. But again, if you've had any training in any sort of retail work, the service industry, waiting tables, anything like that, it's pretty easily transferable. I would say one thing I wasn't quite prepared for was, like media training, oh, and at least in my position, like working with donors, I thought I was just gonna, you know, organize some books. I didn't know that, you know, the news might want to come interview me without a lot of notice, or that, you know, interacting with donors would be a kind of large part of my job. So that's been a bit new to me, and I've learned as I've gone through it. On the technical side, I would say, you know, so much of my job really is technical that I have a lot of physical items on my desk right now. But even with all of these items, it's cataloging them. You know everything people think it's just reading all day, and that is not at all what I'm doing. I'm scanning archives for people that have reference requests, organizing photos online, so it's easy for people in my organization to find them. Such a large part of my job is just technical on the computer work that I think it really surprises people.<br><br>
+</p><h3>
+      Emi Marrujo  26:31<br></h3><p>
+      Yeah, what were these skills you kind of had an internship or classes that helped you develop them? Or are these just things you had to work on while here?<br><br>
+</p><h3>
+      Ariel Hammond 26:41<br></h3><p>
+      I mean, I definitely took a lot of cataloging classes, so that really helps. But you know, every ILS is different, so you have to know how to navigate different ones wherever you're working. I did my very first class for my MI was hand coding a website, and then I also had to create a database from scratch and then connect the database to the website so people could, you know, request things from it and pull that and I think that database knowledge has been so helpful in my career, everything that you're working with, a photo database or a dance file storage system. When you understand the basics of them, it's pretty easy to pick up what's going on, and so that's been very helpful. But then other things, like making a fire on Canva, you know, that wasn't part of my training. I just started playing around with Canva. And again, if I need to make a quick flyer for an event that we're doing or something like that, make some bookmarks. It's been very easy. So I think having a learner's mindset with technology is really important, because some people think, Oh, I learned how to do this one system and I'm done. I don't have to learn anything forever. Like Technology is always changing. You just have to accept you're always going to be learning new things<br><br>
+</p><h3>
+      Emi Marrujo  28:11<br></h3><p>
+      with it. So in regards to that, do you think having a baseline understanding of the process and use of technology within librarianship would be beneficial for someone interested in the role like yours, or just any librarianship.<br><br>
+</p><h3>
+      Ariel Hammond  28:26<br></h3><p>
+      Yeah, and even, like, I get excited when I interview people and they say, oh, it's nerdy, but I really like cleaning data, or it seems really weird, but I really like to do this thing. If someone says, I want to be a librarian just because I like reading, that's an automatic, not a good answer for me,<br><br>
+</p><h3>
+      Emi Marrujo 28:47<br></h3><p>
+      yeah, yeah. That's helpful to know, because the class that this project is for is actually, like, one of our more like, technical classes, you know, learning HTML and those things I find, like, a lot of the other students are, like, a little hesitant, like, how is this going to help me? Like, I don't know how this is going to help me at all. But hearing from you, it's very beneficial.<br><br>
+</p><h3>
+      Ariel Hammond  29:09<br></h3><p>
+      You know, it's great for even just being able to create your own personal portfolio, whatever Library website you're working on, if you can understand the basics and how to create things. If your library might not have an IT department, you might be the only one doing that. It's also helpful for me, just in the reference sense, when I'm trying to find things online, being able to navigate search results because I understand information retrieval, or if I have to going to the code for something in a website to try to find where something might be hidden, or things like that, you know, it's having those tools, I think, is just really helpful in ways you won't even<br><br>
+</p><h3>
+      Emi Marrujo  30:01<br></h3><p>
+      expect, yeah, but then when you come across a problem and you're like, I have a different solution that I can take exactly Yeah. And do you think that that makes you also a better resource for people who are looking to like access information, where you can support them with like, your technological knowledge, 1,000,000% Yeah?<br><br>
+</p><h3>
+      Ariel Hammond  30:21<br></h3><p>
+      You know, there are so many, so many examples, especially of people who are not digital natives. You know, some of the older generations, they weren't taught this kind of constant learners technology mindset. So for one of my researchers. I just grabbed his computer and made him his own Google Scholar page so I could start putting all of his works in there, because it was hard for him to find his own publications at times. Yeah, it was like, this is actually something so easy I can create for you. And once I have the system set up, it'll all start connecting there. So, yeah, I think it can be really helpful. And again, we're using it, not just even though it is fun, but not just for fun, for ourselves. It's to help other people,<br><br>
+</p><h3>
+      Emi Marrujo 31:15<br></h3><p>
+      yeah, of course. And like, at the end of the day, that's kind of what, like you said. It goes back to librarianship. It is a service position, right? Yeah, um, let's see.<br><br>
+</p><h3>
+      Emi Marrujo  31:34<br></h3><p>
+      Do you have any suggestions, other than just, you know, exploring what your MLS program has for people who are looking to develop more skills in the field.<br><br>
+</p><h3>
+      Ariel Hammond  31:50<br></h3><p>
+      You know, I and I think you actually have a question about this in labor trends, discussing internships, I think that taking any opportunity to learn is so beneficial. You know, if someone has not just even within the class, in my program, I had a project that I really needed help on and people in the class volunteered to help on the project, and it became something that was a whole year long thing. We got to do independent study for it, which was really cool. We got to go really deep. So opportunities that arise that might seem a little bit of a stretch, I think, are always going to be really good to help build your skills, connect with people, advance your portfolio. That said, it's so tough to navigate all of the unpaid internship opportunities that are out there and the inequities that can be built into them. Because, if that's an easy thing to say, but if you're balancing school and a part time job and maybe responsibilities at home, taking on an unpaid internship can be a major burden for people, even if you will network and learn more and stuff. So I think those opportunities are so helpful and important if it can work with you and with your schedule.<br><br>
+</p></h3>
+      Emi Marrujo 33:30<br></h3><p>
+      Yeah, of course, yeah. And that's like, I also hear that a lot with other peers in my program, like trying to find, even just trying to find a job right now within the field is, like, really tricky, or like, an entry level position for students is kind of hard. I mean, this wasn't actually a question I wrote down, but do you have any suggestions for just like, looking for positions or navigating that,<br><br>
+</p><h3>
+      Ariel Hammond  33:58<br></h3><p>
+      you know I was gonna say one thing is, sometimes the system that you're working with, so I don't know you're at UCLA Correct, yes. I don't know what the La Public Library system is like, but within San Diego, our system has a six month applicant pool, so positions are announced and you apply, and you put your name kind of in the ring, and then when the position actually comes open, within that six months, they may call you for an interview. And then once the six month applicant pool ends, you've got to re-apply to get your name and resume in there. It's the most demoralizing thing. I went through it so many times, and again, I had a friend who had an internship and got to know the people. And so, of course, you know, they were seen and called for interviews more because they already knew the people that were there. So that's that unpaid labor to get to paid labor sort of pipeline. But it is. It's that system in particular, is a very tough and demoralizing one for other positions. You know, I think anything that relates to, and this is from a research librarian, anything that relates to research. I've seen people having, you know, a TA ship on their application that's helping people, that's helping with research that, to me, is totally viable and fits within what you know, we are looking for, people who are working within tech, on databases, things like that, even people who are doing clerical work, because, again, so much of our work is on the computer. Clerical to cataloging is a pretty clear pipeline there also, so those things you know having on your resume to at least show transferable skills can be very helpful for public facing positions. Maybe that is, again, within service that might be some sort of, you know, community engagement activities, things like that. And I will say networking, even though it sounds so scary, really is so helpful, because librarian communities are, by and large, very helpful, kind people, and it's a relatively small group of people. So if I see someone apply who has worked at the Coronado Public Library. I know. Oh well, I know Vicki there. And if Vicki is this person's reference and I trust her, then this must be a good candidate. So it sounds scary. Sometimes we even use the term intentional relationship building, but it really is, I think, so great to get to know people within the community. Yeah, so I think that's a helpful thing, too.<br><br>
+</p><h3>
+      Emi Marrujo 37:12<br></h3><p>
+      I am such a proponent of doing that, but I just like talking to other people in the field. So I'm probably biased and not the stereotypical shy MLIS student, but I think my cohorts are really sociable, so I think they'll like that suggestion so kind of like when you came into this role and like the work you do now. Do you think that, like your expectations in job listing, kind of, like, aligns with what you're doing on a day to day basis, or that's awesome.<br><br>
+</p><h3>
+      Ariel Hammond  37:52<br></h3><p>
+      I mean, kind of we joke that at the job listing, it says at the bottom, like other duties as assigned, and we should just, like, get hats made of that or something. Because, like, you know, there have been times when we get questions of, like, oh, this person is asking about photo licensing. Ari, you're in charge of photo licensing. And like, I didn't know that. I started Googling photo licensing. Like, okay, let's figure this out. But that said, I mean, really, when it comes down to it, I'm organizing the resources that we have. I'm really working on collection development, I'm working on reference and doing a lot of data stuff. And those are the things that I love. You know, I, as I mentioned, maybe I wish the job description had said more about you're going to be interacting with donors a lot, but that also maybe is just kind of how the sausage is made, and I was not prepared for that<br><br>
+</p><h3>
+      Emi Marrujo  38:57<br></h3><p>
+      so much. Are you able to, like, do all your, like, required work and stuff, like, within your, you know, paid time frame, because, like, there's some professions, like, my sister's in engineering, and she's like, I am not staying over, even if they want me to ever. So is that like a challenge ever in your role?<br><br>
+</p><h3>
+      Ariel Hammond  39:16<br></h3><p>
+      You know, I think that it is, and I think it's an issue with both libraries and within environmental non profits, that we do it because it's a calling and because we love it, and so it's really easy to have that slip. I'll just help one more person, and then I'll go home, because that's why we're here. Giving someone the item they have been looking for is the biggest joy in the world. And so I think it's about finding boundaries for yourself and also kind of understanding why. So for me, I'm lucky in that. Yeah, you know, maybe I'll have to work late nights for events, but I can come in a little bit late the next morning. That's okay, and constantly reminding myself that this is a marathon, not a sprint. This weeding project I have been working on for at least a year, it will probably go on even longer, but it doesn't have to be done tomorrow. There's no one looking over my shoulder saying it has to be done now, cleaning up the catalog, that's a Sisyphean task. We will be working on that as long as the library exists, and you just kind of accept that, and that's okay sometimes, yeah, it's Friday, let's close up at four o'clock and go home early. That's fine.<br><br>
+</p><h3>
+      Emi Marrujo 40:44<br></h3><p>
+      It's okay. Yeah, yeah. So do you think that you have, like, a lot more wiggle room and like, less oversight to just do what you need to do in the right direction? You see that will work best for you guys at the NAT<br><br>
+</p><h3>
+      Ariel Hammond  40:59<br></h3><p>
+      I think so. Though, what I think might also be the fact that we are a small special library. So if this was a public library, or even a large academic library, you know, somebody has to be there at eight to open the doors and start doing circulation or something. So it's kind of nice that we have less pressure there for those sorts of things.<br><br>
+</p><h3>
+      41:24<br></h3><p>
+      Yeah, yeah.<br><br>
+</p><h3>
+      Emi Marrujo 41:26<br></h3><p>
+      So I think we have two more kinds of areas I'd like to cover. One of them is just like, I guess we kind of started moving in that direction of, like, social political constraints, or like, how that influences your job. So I guess we could start small. And so how does like, the values and the institutional policy affect the direction you take with, like, your own personal like you mentioned, like you're interested in doing the mycology research and like, or what you how you go about weeding out things, or the interns you bring on. So how does the mission of the NAT affect your work?<br><br>
+</p><h3>
+      Ariel Hammond  42:07<br></h3><p>
+      You know the mission of the gnat is, in some ways, it's very lucky. It's mostly just focused on nature and about communicating nature and inspiring wonder of the natural world. So there are a lot of things going on, even politically right now, that we don't have to get into. And yet we are humans doing this. So, you know, I do not feel that my library is ever going to be attacked for having items related to gender or LGBTQ issues, because we are not those are not resources we have. Our resources are about plants and animals, yeah, even though there, there is a lot of homosexuality within the animal world, yeah, and I feel lucky that we have a nonprofit parent organization that does support science based reason, and yet, you know, we do try to focus on Dei, or we call it idea, to have blind hiring processes to, as I mentioned, you know, not have unpaid internships to make sure that we're being equitable about who we hire. So politics doesn't get too deep into our work. But I do really respect the values of my parent organization, and part of why am I here is because I know that my personal values are reflected<br><br>
+</p><h3>
+      Emi Marrujo  44:02<br></h3><p>
+      here, yeah. And I think that's probably really important when, like, trying to choose where to apply and where to work once you are in the field is like finding somewhere that fits your values and community needs,<br><br>
+</p><h3>
+      Ariel Hammond  44:16<br></h3><p>
+      you know. And it's not easy, because you do have to, you know, get food on the table, yeah. And yet, I have seen a number of positions for libraries with the Department of Defense. There are libraries within, you know, other parts of the federal government that would be so much more subject to political changes,<br><br>
+</p><h3>
+      Emi Marrujo  44:41<br></h3><p>
+      yeah, yeah, no, for sure. I used to work for the Library of Congress, Congressional Research Services, and I can't imagine their shift even between congressional elections, is probably insane.<br><br>
+</p><h3>
+      Ariel Hammond  44:56<br></h3><p>
+      I was heartbroken when Carla Hayden was like, go. I just,<br><br>
+</p><h3>
+      Emi Marrujo  45:02<br></h3><p>
+      I so everybody within our<br><br>
+</p><h3>
+      Ariel Hammond  45:05<br></h3><p>
+      people, my personal hero. But again, that's why, when those sorts of things have come up, even here in San Diego, there's libraries at some of the military bases, right? And like, yes, those people do deserve to have libraries that support them. And yet, knowing that I would be subject to some of those rules, and that's not exactly aligned with my values, I probably would have picked to go in a different industry if those were the only options. No, of<br><br>
+</p><h3>
+      45:38<br></h3><p>
+      course, yeah, I think because kind of like looking over some of these and answering them in different parts.<br><br>
+</p><h3>
+      Emi Marrujo  45:48<br></h3><p>
+      So guess we'll move to the last few questions. Do you see that like your research library role and like the roles, like research librarianship, archives outreach within museum settings. Is that, do you anticipate being like a growing field, or do you see it at all diminishing in society as a valued space?<br><br>
+</p><h3>
+      46:14<br></h3><p>
+      You know, it's interesting. Also going off of our discussion about AI earlier,<br><br>
+</p><h3>
+      46:21<br></h3><p>
+      You know, I have this sticker that says, archivists, no one knows what we do until we don't do it.<br><br>
+</p><h3>
+      Ariel Hammond  46:32<br></h3><p>
+      So even though there are so many new technologies, people think everything is already online. There is so much of history that is not yet digitized, that is not yet accessible online. So AI can't generate, you know, concepts on subjects until we get that up there. Or I think a lot of my work is, you know, organizing things just within our own organization, but also when we put it up online, we're adding metadata. We are organizing the internet for people, and I think that that's often missed in what libraries do and librarians do. So I can see, you know, probably a lot of worries about what we do diminishing in the future, but I think it's really re looking at our role in what we do. If people think that libraries are just lending out books, then, yeah, it's it's easy to see, oh, that that might not be as big of a thing going forward, but if you really look at again, the technology that librarians are using, how we're sharing resources, as I mentioned, you know, reaching fast audiences online. That work is still needed. Someone still needs to scan that photograph, add the metadata, put it up on the internet, archive all of those things.<br><br>
+</p><h3>
+      47:56<br></h3><p>
+      Yeah, yeah.<br><br>
+</p><h3>
+      Emi Marrujo  47:59<br></h3><p>
+      I think that's like, really gets down to, like, the integral role of librarianship, though, like, what are we really doing at the end of the day? Because there's been so many people, we already thought that libraries were gonna die out with the age of the internet, but<br><br>
+</p><h3>
+      Ariel Hammond  48:15<br></h3><p>
+      exactly, or when computers were developed, or, you know, CDs, or all of this stuff, there's always this kind of growing like, oh, the sky is falling. And I think it's really just adapting and taking some of the same principles that we're using for books, that we are using for digital items. I mean, we haven't even gotten into, like journals and academic publishing, which is its own, like huge mess right now. You know, librarians work to save all of this information that can be cut off by the publisher in a heartbeat. So you're at UCLA. I don't know if you are aware of the whole fight that the UCS went through with Elsevier a few years ago. Oh, no. So Elsevier is a huge publisher, and I think it was maybe 2018 or 2019 the University of California system decided to not renew with Elsevier, because the costs are astronomical. I spend at least 20,000 a year just paying for online journal access for things, and that's a small amount of what we can access. So the costs get bigger every year, and the UC system decided they wanted to renegotiate with Elsevier, and so everything that they had subscribed to previously was gone instantly because Elsevier just turned off the knob. Wow. And so it really caused this kind of awareness, not only with how much these publishers are making off of these academic journals. Of how many academics need to access these online journals if we don't have print versions anymore, especially, and also the importance of libraries around the world saving items, sharing them, loaning them with each other, making sure that information is not lost and is still relatively easy to be accessed by people. Yeah, and that's a I know people, their whole jobs are just licensing and coming up with license agreements and making sure people have access to digital things. It took me probably a year to get JSTOR to just email me back so I could pay them, oh, wow, to turn or access back on.<br><br>
+</p><h3>
+      Emi Marrujo 50:53<br></h3><p>
+      That's and just think of old like the time maybe somebody was already using research within that exactly.<br><br>
+</p><h3>
+      Emi Marrujo 51:00<br></h3><p>
+      Yeah, it's so whereas, if you<br><br>
+</p><h3>
+      Ariel Hammond  51:03<br></h3><p>
+      know, I have, this is not a journal, but this book right here, you know, if I lost the digital accessibility of it, I could still come back to the physical copy, and my researchers could use<br><br>
+</p><h3>
+      Emi Marrujo  51:15<br></h3><p>
+      it kind of like feeds into the idea of, like, the ethics of pay walls and stuff for research, and who owns the research and not not libraries, when you might think<br><br>
+</p><h3>
+      Ariel Hammond  51:31<br></h3><p>
+      there's the profit margins of the publishers are insane, higher than Google, higher than Amazon, higher than B of W and the authors typically don't get paid. The editors don't get paid very much. The peer reviewers don't get paid. It's really, I think it's kind of a racket. So I'm, I'm so for open access all the time.<br><br>
+</p><h3>
+      Emi Marrujo  51:55<br></h3><p>
+      Me too. I dread once I graduate and I'm like, where am I going to get all my random internet, library, research database hunts that I love doing. You know?<br><br>
+</p><h3>
+      Ariel Hammond  52:08<br></h3><p>
+      there is, like public libraries typically do subscribe to interlibrary loans. You can access it, you know, request it through them. It just takes a little while. I have just a personal, community card with UCSD. Oh, I can check things out at UCSD and go on campus and see things. But, I mean, I think it costs like 100 bucks for the year. Oh, wow, which is, like, kind of pricey. But for me, the museum paid for it, which was nice, yeah, but it is just, yeah, it's really scary out there, but because it's so scary, I don't think we're going to be out of a job for a while. We still need people to fight this fight, share information and organize things for people.<br><br>
+</p><h3>
+      Emi Marrujo 52:52<br></h3><p>
+      Yeah, absolutely. I guess we can kind of move to wrapping things up. I see we have a few minutes left. So two last questions. For one, was there any like thing I sent over that I didn't cover, that you were hoping to get to<br><br>
+</p><h3>
+      Ariel Hammond  53:06<br></h3><p>
+      I was trying to glance over really quickly. I take your time. You did. No. You have this question here that I didn't understand. It says, are you familiar with the idea of care within archival institutions?<br><br>
+</p><h3>
+      Emi Marrujo 53:17<br></h3><p>
+      What is that? I'm going to be fully honest, I didn't write that one question, so not entirely fine. That was when my group mates,<br><br>
+</p><h3>
+      Ariel Hammond  53:28<br></h3><p>
+      I will say, though the follow up question, do you approach your work with any mantras? Yeah, my mantra is, it's a marathon, not a sprint. And I tell myself that like five times a day when things are building up, and it seems like so much like it's a marathon, not a sprint. It doesn't have to be done today. And I also, I've been watching this show about ER doctors called the<br><br>
+</p><h3>
+      53:53<br></h3><p>
+      pit. Oh yeah, I've heard the bit.<br><br>
+</p><h3>
+      Ariel Hammond  53:56<br></h3><p>
+      So I also remind myself like I'm not actively doing open heart surgery, yeah, just books. Everything's gonna be okay. Nobody's on the operating table right now. Yeah, yeah. So those are my two mantras.<br><br>
+</p><h3>
+      Emi Marrujo  54:11<br></h3><p>
+      Those are good ones. I think, yeah, especially because I'm sure, like, most people, like, they get three emails. You're like, oh my gosh, I have to do everything now. Well, and
+</p><h3>
+      Ariel Hammond  54:21<br></h3><p>
+      even, you know, my meeting with paleo yesterday about what books to get rid of and stuff, and I can feel, you know, luckily, that one was very well, very nice, but sometimes you can feel tensions rising over these conflicts and stuff, or, like you said, anxiety about more things to do, and it's like no one is dying, yeah, these are books. We will be okay.<br><br>
+</p><h3>
+      Emi Marrujo 54:45<br></h3><p>
+      Yeah, books can be right. Yes, it's I think that maybe the care question was kind of asking, like, whether your collections, policies surrounding, like, care of material, considering community, that's what I assume it means, if you wanted to speak to that you're free to if not, we can go to our last question.<br><br>
+</p><h3>
+      55:10<br></h3><p>
+      I don't really know. Yeah, maybe last question.<br><br>
+</p><h3>
+      Emi Marrujo  55:13<br></h3><p>
+      Okay, so just like closing things up, just general words of advice. I guess this kind of builds off, like your mantras for you know, all the students within my program right now who are graduating. Do you have any advice for MLS students? Well, you're still student, and then once you enter the field,<br><br>
+</p><h3>
+      Ariel Hammond  55:32<br></h3><p>
+      you know, I would say kind of what we talked about, of different jobs, different interests, you know, looking back at my history now, I can see everything that I did led me to this point of being a natural history librarian with an interest in data science, but at the time, it felt very weird and disjointed. I was, you know, working at Barnes and Noble, but still going to the zoo all the time and studying animals, and then also just randomly liked playing with technology, like those three things didn't seem to come together. And so I would say, like pursuing your interests and constantly working on your skills. There was a blogger I used to read who talked about when he was a kid, blogging wasn't a profession, but he worked on his writing skills, he worked on his marketing skills, he worked on his communication skills, and that led to blogging. So I think if you keep investing in your own skills, there will be opportunities that arise that you might not realize that you didn't even know existed before.<br><br>
+</p><h3>
+      Ariel Hammond  57:39<br></h3><p>
+      be great. I do have to get going though. Okay, yes, so much. Thank you. Send me an email for follow up<br><br>
+</p><h3>
+      Emi Marrujo 57:45<br></h3><p>
+      perfect. Okay, take care of yourself too. Bye!<br><br>
+
+
+    </p>
 </section>
 
 <section id=bibli-view class=page-content>
+  <header class=page-banner>
+    <img src="biblipic1.jpg">
+  </header>
+<div class="sub-banner">
+  <h2>Annotated Bibliography</h2>
+  <div class="bib.banner">
+    <h3>“Alternative Career Paths Utilizing Library Science Skills.” Librarian Certification. https://www.librariancertification.com/alternative-career-paths-utilizing-library-science-skills/.</h3>
+    <p>     This article, posted on Librarian Certification, details the job market for library skills. The article admits the small job market for Librarians, but then explores other careers and opportunities that utilize skills a Librarian might have in other positions. It is incredibly informative about the multiple ways to progress realistically, thus providing a new perspective on the job market. This article was used to gather information on the job-market and its information is reflected in the dossier.</p>
+    <br><h3>“Casting a Line, Screaming into the Void: Lessons from One Librarian’s Mlis Job Search Experience.” NMRT Notes, February 28, 2025. https://www.nmrt.ala.org/notes/casting-a-line-screaming-into-the-void-lessons-from-one-librarians-mlis-job-search-experience/.</h3>
+    <p>      Library outreach specialist, Jenni Diaz Garcia interviews an anonymous recent SJSU MLIS alumn. This discussion focuses on themes of employment security and the ongoing job market crisis for aspiring Librarians. As a primary source, this is an amazing resource for understanding the job market outlook for current-day applicants. Therefore, it is used as a resource to gather information on the job-market outlook. Although a credible source, it provides the readers with little context to the individual’s student life and experiences, leaving uncertainty about the full context and confidence in the situation. </p>
+    <br><h3>Institute, Canadian Conservation. “Caring for Paper Objects.” Preventive Conservation Guidelines for Collections - Canada.Ca, / Gouvernement du Canada, 2 Dec. 2025, www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/paper-objects.html.</h3>
+    <p>This Career Development Resource Guide, produced by ALA, provides an overview of information new emerging professionals can use to enter the workforce. It covers job searches, marketing yourself, interviewing, and job offers, all within the context of the library and information professions. This is especially relevant for graduating MLIS students who are seeking social guidance within career development. </p>
+    <br><h3>Libraries, Association of Research. Research Library Issues, No. 303 (2022): Future States of the Research Library Page 29, 6 July 2022, publications.arl.org/rli303/29.</h3>
+    <p>This specific issue from Research Library Issues discusses major trends in research librarianship. It examines the way in which teaching impacts researchers' roles and workforce as well as dealing with the impact of misinformation as a library professional. This issue is a good foundation for understanding the shifting currents of information, research and libraries post COVID-19 era.  </p>
+    <br><h3>“Research Library Issues Archives.” Association of Research Libraries, www.arl.org/arl-terms/research-library-issues/. </h3>
+    <p>Research Library Issues is a news outlet through The Association of Research Libraries. It is a one-stop location for news, research and pressing issues within the research library field. This source will support students waiting to enter research libraries in staying informed and up to date on the field's current trajectories.</p>
+    <br><h3>Saunders, Laura. “Navigating a Tight Job Market: There’s a Job for You.” College & Research Libraries News, crln.acrl.org/index.php/crlnews/article/view/22627/29094. </h3>
+    <p>Saunders from the College and Research Libraries News peels back a new layer of the job market. From the perspective of research librarians, this source is incredibly relevant. Saunders examines job placements at different colleges and research libraries and notes that there are not many job postings for the positions people hold when they retire. This presents a new look, from the institution's perspective rather than the applicants'. Due to this new angle, the source was used when conducting research for the job-market overview. </p>
+
+</section>
 
 <script>
     function show(id) {
-        // This list MUST include every single section ID you have
         const views = [
             'home-view',
             'tasks-view',
